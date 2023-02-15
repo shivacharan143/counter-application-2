@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
-function App() {
+function App() {  
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount((count) => (count + 1));
+  }
+
+  const decrement = () => {
+    setCount((count) => (count - 1));
+  }
+
+  const getColor = () => {
+    if (count <= 4) {
+      return 'green';
+    } else if (count <= 9) {
+      return 'blue';
+    } else {
+      return 'red';
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button className='decrement' onClick={decrement}>Decrement</button>
+      <h1 className='counter' style={{color: getColor()}}>{count}</h1>
+      <button className="increment" onClick={increment}>Increment</button>
     </div>
   );
 }
